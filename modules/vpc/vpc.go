@@ -12,28 +12,28 @@ import (
 
 // VPCInfo contains comprehensive information about an AWS VPC
 type VPCInfo struct {
-	VpcID               string            `json:"vpc_id"`                 // Unique identifier for the VPC
-	CidrBlock           string            `json:"cidr_block"`             // Primary CIDR block assigned to the VPC
-	State               string            `json:"state"`                  // Current state of the VPC (available, pending)
-	IsDefault           bool              `json:"is_default"`             // Whether this is the default VPC for the region
-	DhcpOptionsID       string            `json:"dhcp_options_id"`        // ID of the DHCP options set associated with the VPC
-	InstanceTenancy     string            `json:"instance_tenancy"`       // Tenancy of instances launched into the VPC (default, dedicated, host)
-	Tags                map[string]string `json:"tags"`                   // Key-value tags associated with the VPC
-	AssociateCidrBlocks []string         `json:"associate_cidr_blocks"`  // Additional CIDR blocks associated with the VPC
+	VpcID               string            `json:"vpc_id"`                // Unique identifier for the VPC
+	CidrBlock           string            `json:"cidr_block"`            // Primary CIDR block assigned to the VPC
+	State               string            `json:"state"`                 // Current state of the VPC (available, pending)
+	IsDefault           bool              `json:"is_default"`            // Whether this is the default VPC for the region
+	DhcpOptionsID       string            `json:"dhcp_options_id"`       // ID of the DHCP options set associated with the VPC
+	InstanceTenancy     string            `json:"instance_tenancy"`      // Tenancy of instances launched into the VPC (default, dedicated, host)
+	Tags                map[string]string `json:"tags"`                  // Key-value tags associated with the VPC
+	AssociateCidrBlocks []string          `json:"associate_cidr_blocks"` // Additional CIDR blocks associated with the VPC
 }
 
 // SubnetInfo contains comprehensive information about an AWS subnet
 type SubnetInfo struct {
-	SubnetID                    string            `json:"subnet_id"`                      // Unique identifier for the subnet
-	VpcID                       string            `json:"vpc_id"`                         // ID of the VPC that contains this subnet
-	CidrBlock                   string            `json:"cidr_block"`                     // CIDR block assigned to the subnet
-	AvailabilityZone            string            `json:"availability_zone"`              // Availability zone where the subnet is located
-	AvailabilityZoneID          string            `json:"availability_zone_id"`           // Unique ID of the availability zone
-	State                       string            `json:"state"`                          // Current state of the subnet (available, pending)
-	MapPublicIpOnLaunch         bool              `json:"map_public_ip_on_launch"`        // Whether instances launched in this subnet receive a public IP
+	SubnetID                    string            `json:"subnet_id"`                       // Unique identifier for the subnet
+	VpcID                       string            `json:"vpc_id"`                          // ID of the VPC that contains this subnet
+	CidrBlock                   string            `json:"cidr_block"`                      // CIDR block assigned to the subnet
+	AvailabilityZone            string            `json:"availability_zone"`               // Availability zone where the subnet is located
+	AvailabilityZoneID          string            `json:"availability_zone_id"`            // Unique ID of the availability zone
+	State                       string            `json:"state"`                           // Current state of the subnet (available, pending)
+	MapPublicIpOnLaunch         bool              `json:"map_public_ip_on_launch"`         // Whether instances launched in this subnet receive a public IP
 	AssignIpv6AddressOnCreation bool              `json:"assign_ipv6_address_on_creation"` // Whether instances receive an IPv6 address on creation
-	DefaultForAz                bool              `json:"default_for_az"`                 // Whether this is the default subnet for the availability zone
-	Tags                        map[string]string `json:"tags"`                           // Key-value tags associated with the subnet
+	DefaultForAz                bool              `json:"default_for_az"`                  // Whether this is the default subnet for the availability zone
+	Tags                        map[string]string `json:"tags"`                            // Key-value tags associated with the subnet
 }
 
 // RouteInfo contains information about an individual route in a route table
@@ -52,37 +52,37 @@ type RouteInfo struct {
 
 // RouteTableInfo contains comprehensive information about an AWS route table
 type RouteTableInfo struct {
-	RouteTableID     string              `json:"route_table_id"`     // Unique identifier for the route table
-	VpcID            string              `json:"vpc_id"`             // ID of the VPC that contains this route table
-	Routes           []RouteInfo         `json:"routes"`             // List of routes in the route table
-	SubnetIDs        []string            `json:"subnet_ids"`         // IDs of subnets explicitly associated with this route table
-	IsMainRouteTable bool                `json:"is_main_route_table"` // Whether this is the main route table for the VPC
-	Tags             map[string]string   `json:"tags"`               // Key-value tags associated with the route table
+	RouteTableID     string            `json:"route_table_id"`      // Unique identifier for the route table
+	VpcID            string            `json:"vpc_id"`              // ID of the VPC that contains this route table
+	Routes           []RouteInfo       `json:"routes"`              // List of routes in the route table
+	SubnetIDs        []string          `json:"subnet_ids"`          // IDs of subnets explicitly associated with this route table
+	IsMainRouteTable bool              `json:"is_main_route_table"` // Whether this is the main route table for the VPC
+	Tags             map[string]string `json:"tags"`                // Key-value tags associated with the route table
 }
 
 // SecurityGroupRule contains information about a security group rule
 type SecurityGroupRule struct {
-	IsEgress       bool   `json:"is_egress"`        // Whether this is an egress rule (true) or ingress rule (false)
-	IpProtocol     string `json:"ip_protocol"`      // IP protocol (tcp, udp, icmp, or protocol number)
-	FromPort       int32  `json:"from_port"`        // Start of port range (or ICMP type)
-	ToPort         int32  `json:"to_port"`          // End of port range (or ICMP code)
-	CidrBlock      string `json:"cidr_block"`       // CIDR block for the rule
-	Ipv6CidrBlock  string `json:"ipv6_cidr_block"`  // IPv6 CIDR block for the rule
-	GroupID        string `json:"group_id"`         // ID of referenced security group
-	GroupOwnerID   string `json:"group_owner_id"`   // AWS account ID that owns the referenced security group
-	PrefixListID   string `json:"prefix_list_id"`   // ID of the prefix list
-	Description    string `json:"description"`      // Description of the rule
+	IsEgress      bool   `json:"is_egress"`       // Whether this is an egress rule (true) or ingress rule (false)
+	IpProtocol    string `json:"ip_protocol"`     // IP protocol (tcp, udp, icmp, or protocol number)
+	FromPort      int32  `json:"from_port"`       // Start of port range (or ICMP type)
+	ToPort        int32  `json:"to_port"`         // End of port range (or ICMP code)
+	CidrBlock     string `json:"cidr_block"`      // CIDR block for the rule
+	Ipv6CidrBlock string `json:"ipv6_cidr_block"` // IPv6 CIDR block for the rule
+	GroupID       string `json:"group_id"`        // ID of referenced security group
+	GroupOwnerID  string `json:"group_owner_id"`  // AWS account ID that owns the referenced security group
+	PrefixListID  string `json:"prefix_list_id"`  // ID of the prefix list
+	Description   string `json:"description"`     // Description of the rule
 }
 
 // SecurityGroupInfo contains comprehensive information about an AWS security group
 type SecurityGroupInfo struct {
-	GroupID     string              `json:"group_id"`     // Unique identifier for the security group
-	GroupName   string              `json:"group_name"`   // Name of the security group
-	Description string              `json:"description"`  // Description of the security group
-	VpcID       string              `json:"vpc_id"`       // ID of the VPC that contains this security group
-	OwnerID     string              `json:"owner_id"`     // AWS account ID that owns the security group
-	Rules       []SecurityGroupRule `json:"rules"`        // List of all rules (ingress and egress) in the security group
-	Tags        map[string]string   `json:"tags"`         // Key-value tags associated with the security group
+	GroupID     string              `json:"group_id"`    // Unique identifier for the security group
+	GroupName   string              `json:"group_name"`  // Name of the security group
+	Description string              `json:"description"` // Description of the security group
+	VpcID       string              `json:"vpc_id"`      // ID of the VPC that contains this security group
+	OwnerID     string              `json:"owner_id"`    // AWS account ID that owns the security group
+	Rules       []SecurityGroupRule `json:"rules"`       // List of all rules (ingress and egress) in the security group
+	Tags        map[string]string   `json:"tags"`        // Key-value tags associated with the security group
 }
 
 // InternetGatewayInfo contains information about an AWS internet gateway
@@ -95,48 +95,48 @@ type InternetGatewayInfo struct {
 
 // NatGatewayInfo contains information about an AWS NAT gateway
 type NatGatewayInfo struct {
-	NatGatewayID         string            `json:"nat_gateway_id"`          // Unique identifier for the NAT gateway
-	SubnetID             string            `json:"subnet_id"`               // ID of the subnet the NAT gateway is in
-	VpcID                string            `json:"vpc_id"`                  // ID of the VPC that contains this NAT gateway
-	State                string            `json:"state"`                   // State of the NAT gateway (pending, failed, available, deleting, deleted)
-	ConnectivityType     string            `json:"connectivity_type"`       // Connectivity type (public, private)
-	PrivateIp            string            `json:"private_ip"`              // Private IP address of the NAT gateway
-	PublicIp             string            `json:"public_ip"`               // Public IP address of the NAT gateway (if applicable)
-	AllocationID         string            `json:"allocation_id"`           // ID of the Elastic IP address allocation
-	NetworkInterfaceID   string            `json:"network_interface_id"`    // ID of the network interface for the NAT gateway
-	CreatedTime          string            `json:"created_time"`            // Time when the NAT gateway was created
-	Tags                 map[string]string `json:"tags"`                    // Key-value tags associated with the NAT gateway
+	NatGatewayID       string            `json:"nat_gateway_id"`       // Unique identifier for the NAT gateway
+	SubnetID           string            `json:"subnet_id"`            // ID of the subnet the NAT gateway is in
+	VpcID              string            `json:"vpc_id"`               // ID of the VPC that contains this NAT gateway
+	State              string            `json:"state"`                // State of the NAT gateway (pending, failed, available, deleting, deleted)
+	ConnectivityType   string            `json:"connectivity_type"`    // Connectivity type (public, private)
+	PrivateIp          string            `json:"private_ip"`           // Private IP address of the NAT gateway
+	PublicIp           string            `json:"public_ip"`            // Public IP address of the NAT gateway (if applicable)
+	AllocationID       string            `json:"allocation_id"`        // ID of the Elastic IP address allocation
+	NetworkInterfaceID string            `json:"network_interface_id"` // ID of the network interface for the NAT gateway
+	CreatedTime        string            `json:"created_time"`         // Time when the NAT gateway was created
+	Tags               map[string]string `json:"tags"`                 // Key-value tags associated with the NAT gateway
 }
 
 // TransitGatewayInfo contains information about an AWS Transit Gateway
 type TransitGatewayInfo struct {
-	TransitGatewayID     string            `json:"transit_gateway_id"`      // Unique identifier for the transit gateway
-	State                string            `json:"state"`                   // State of the transit gateway (pending, available, modifying, deleting, deleted)
-	OwnerID              string            `json:"owner_id"`                // AWS account ID that owns the transit gateway
-	Description          string            `json:"description"`             // Description of the transit gateway
-	CreationTime         string            `json:"creation_time"`           // Time when the transit gateway was created
-	DefaultRouteTableID  string            `json:"default_route_table_id"`  // ID of the default route table
-	PropagationRouteTableID string         `json:"propagation_route_table_id"` // ID of the default propagation route table
-	AmazonSideAsn        int64             `json:"amazon_side_asn"`         // Private Autonomous System Number (ASN) for the Amazon side of the BGP session
-	AutoAcceptSharedAttachments string     `json:"auto_accept_shared_attachments"` // Whether to auto-accept shared attachments
-	DefaultRouteTableAssociation string    `json:"default_route_table_association"` // Whether to auto-associate with default route table
-	DefaultRouteTablePropagation string    `json:"default_route_table_propagation"` // Whether to auto-propagate to default route table
-	DnsSupport               string        `json:"dns_support"`             // Whether DNS support is enabled
-	MulticastSupport         string        `json:"multicast_support"`       // Whether multicast support is enabled
-	Tags                     map[string]string `json:"tags"`                // Key-value tags associated with the transit gateway
+	TransitGatewayID             string            `json:"transit_gateway_id"`              // Unique identifier for the transit gateway
+	State                        string            `json:"state"`                           // State of the transit gateway (pending, available, modifying, deleting, deleted)
+	OwnerID                      string            `json:"owner_id"`                        // AWS account ID that owns the transit gateway
+	Description                  string            `json:"description"`                     // Description of the transit gateway
+	CreationTime                 string            `json:"creation_time"`                   // Time when the transit gateway was created
+	DefaultRouteTableID          string            `json:"default_route_table_id"`          // ID of the default route table
+	PropagationRouteTableID      string            `json:"propagation_route_table_id"`      // ID of the default propagation route table
+	AmazonSideAsn                int64             `json:"amazon_side_asn"`                 // Private Autonomous System Number (ASN) for the Amazon side of the BGP session
+	AutoAcceptSharedAttachments  string            `json:"auto_accept_shared_attachments"`  // Whether to auto-accept shared attachments
+	DefaultRouteTableAssociation string            `json:"default_route_table_association"` // Whether to auto-associate with default route table
+	DefaultRouteTablePropagation string            `json:"default_route_table_propagation"` // Whether to auto-propagate to default route table
+	DnsSupport                   string            `json:"dns_support"`                     // Whether DNS support is enabled
+	MulticastSupport             string            `json:"multicast_support"`               // Whether multicast support is enabled
+	Tags                         map[string]string `json:"tags"`                            // Key-value tags associated with the transit gateway
 }
 
 // TransitGatewayAttachmentInfo contains information about a Transit Gateway attachment
 type TransitGatewayAttachmentInfo struct {
-	AttachmentID         string            `json:"attachment_id"`           // Unique identifier for the attachment
-	TransitGatewayID     string            `json:"transit_gateway_id"`      // ID of the transit gateway
-	ResourceType         string            `json:"resource_type"`           // Type of resource (vpc, vpn, direct-connect-gateway, peering)
-	ResourceID           string            `json:"resource_id"`             // ID of the attached resource
-	ResourceOwnerID      string            `json:"resource_owner_id"`       // AWS account ID that owns the resource
-	State                string            `json:"state"`                   // State of the attachment (initiating, pendingAcceptance, rollingBack, pending, available, modifying, deleting, deleted, failed, rejected, rejecting, failing)
-	Association          map[string]string `json:"association"`             // Route table association information
-	CreationTime         string            `json:"creation_time"`           // Time when the attachment was created
-	Tags                 map[string]string `json:"tags"`                    // Key-value tags associated with the attachment
+	AttachmentID     string            `json:"attachment_id"`      // Unique identifier for the attachment
+	TransitGatewayID string            `json:"transit_gateway_id"` // ID of the transit gateway
+	ResourceType     string            `json:"resource_type"`      // Type of resource (vpc, vpn, direct-connect-gateway, peering)
+	ResourceID       string            `json:"resource_id"`        // ID of the attached resource
+	ResourceOwnerID  string            `json:"resource_owner_id"`  // AWS account ID that owns the resource
+	State            string            `json:"state"`              // State of the attachment (initiating, pendingAcceptance, rollingBack, pending, available, modifying, deleting, deleted, failed, rejected, rejecting, failing)
+	Association      map[string]string `json:"association"`        // Route table association information
+	CreationTime     string            `json:"creation_time"`      // Time when the attachment was created
+	Tags             map[string]string `json:"tags"`               // Key-value tags associated with the attachment
 }
 
 // Scanner provides methods for retrieving VPC and related AWS networking information
